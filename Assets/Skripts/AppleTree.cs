@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
 
 public class AppleTree : MonoBehaviour
 {
@@ -8,16 +8,20 @@ public class AppleTree : MonoBehaviour
     public GameObject ApplePrefab;
 
     public float Speed = 1f;
-
     public float LeftAndRightEdge = 10f;
-
     public float ChanceToChangeDirection = 0.1f;
-
     public float SecondsBetweenAppleDrops = 1f;
 
     private void Start()
     {
         Invoke("DropApple", 2f);
+    }
+
+    public void SetDifficulty(DifficultySettings difficulty)
+    {
+        Speed = difficulty.Speed;
+        ChanceToChangeDirection = difficulty.ChanceToChangeDirection;
+        SecondsBetweenAppleDrops = difficulty.SecondsBetweenAppleDrops;
     }
 
     private void DropApple()
