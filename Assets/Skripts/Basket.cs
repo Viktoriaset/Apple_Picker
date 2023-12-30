@@ -6,12 +6,12 @@ using UnityEngine;
 public class Basket : MonoBehaviour
 {
     [Header("Set dynamically")]
-    public TextMeshPro scoreGT;
+    public TextMeshProUGUI scoreGT;
 
     private void Start()
     {
         GameObject scoreGO = GameObject.Find("ScoreCounter");
-        scoreGT = scoreGO.GetComponent<TextMeshPro>();
+        scoreGT = scoreGO.GetComponent<TextMeshProUGUI>();
         scoreGT.text = "0";
     }
     private void Update()
@@ -37,6 +37,11 @@ public class Basket : MonoBehaviour
             int score = int.Parse(scoreGT.text);
             score += 100;
             scoreGT.text = score.ToString();
+
+            if (score > HighScore.Score)
+            {
+                HighScore.Score = score;
+            }
         }
     }
 }
